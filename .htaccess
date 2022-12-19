@@ -1,0 +1,24 @@
+RewriteEngine on
+
+
+
+#SSL descomente as linhas abaixo para forçar HTTPS na loja
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+#RewriteCond %{HTTP_HOST} !^www\.
+#RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+RewriteRule ^view/ - [L,NC]
+RewriteRule ^midias/ - [L,NC]
+RewriteRule ^assets/ - [L,NC]
+RewriteRule ^phpinfo.php - [L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)/$ loader.php?rota=$1 [L,QSA]
+RewriteRule ^(.*)$ loader.php?rota=$1 [L,QSA]
+#RewriteRule ^(.*)$ loader.php?rota=index [L,QSA]
+
+
